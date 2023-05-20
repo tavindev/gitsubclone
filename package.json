@@ -8,7 +8,7 @@
   "scripts": {
     "build": "tsup index.ts --format cjs,esm --dts",
     "prerelease": "pnpm build && pnpm lint",
-    "lint": "tsc",
+    "lint": "tsc"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.8",
