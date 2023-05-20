@@ -1,0 +1,19 @@
+{
+  "name": "gitsubclone",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup index.ts --format cjs,esm --dts",
+    "prerelease": "pnpm build && pnpm lint",
+    "lint": "tsc",
+  },
+  "devDependencies": {
+    "@changesets/changelog-github": "^0.4.8",
+    "@changesets/cli": "^2.26.0",
+    "tsup": "^6.5.0",
+    "typescript": "^4.9.4"
+  }
+}
