@@ -10,10 +10,10 @@ const args = yargs(process.argv.slice(2))
     'Clone a git repository and checkout only the specified folders',
     (yargs) => {
       return yargs
-        .option('remove-git', {
-          alias: 'r',
+        .option('keep-git', {
+          alias: 'k',
           type: 'boolean',
-          description: 'Remove .git folder',
+          description: 'Keep .git folder',
         })
         .option('output', {
           alias: 'o',
@@ -49,7 +49,7 @@ const args = yargs(process.argv.slice(2))
         process.chdir(path.join(output, argv.basePath ?? ''));
         execSync(`git sparse-checkout set --no-cone ${folders.join(' ')}`);
         execSync(`git checkout`);
-        if (argv.removeGit) execSync(`rm -rf .git`);
+        if (!argv.keepGit) execSync(`rm -rf .git`);
 
         console.log(`Cloned ${repoUrl} to ${output}`);
       } catch (e) {
