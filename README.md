@@ -8,7 +8,7 @@ For example, running:
 gitsubclone https://github.com/cirosantilli/test-git-partial-clone-big-small-no-bigtree small
 ```
 
-will clone the `small` subdirectory of the `test-git-partial-clone-big-small-no-bigtree` repository to the current directory.
+will clone the `small` subdirectory of the `test-git-partial-clone-big-small-no-bigtree` repository to new folder `test-git-partial-clone-big-small-no-bigtree`
 
 # Installation
 
@@ -27,7 +27,7 @@ gitsubclone <options> [repo] [subdirectories...]
 | Option | Alias | Description |
 | --- | --- | --- |
 | --help | -h | Show help |
-| --remove-git | -r | Remove .git folder from cloned subdirectories |
+| --keep-git | -k | Keep .git folder from cloned subdirectories |
 | --base-path | -b | Base path to clone subdirectories from |
-| --output-path | -o | Output path to clone subdirectories to |
+| --output-path | -o | Output path to clone subdirectories to. Defaults to the name of the cloned repository |
 
