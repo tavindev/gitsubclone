@@ -37,26 +37,24 @@ const args = yargs(process.argv.slice(2))
         });
     },
     (argv) => {
-      const repoUrl = argv.repoUrl;
-      const folders = argv.folders;
+      try {
+        const repoUrl = argv.repoUrl;
+        const folders = argv.folders;
 
-      const output = argv.output ?? repoUrl.split('/').pop()!;
+        const output = argv.output ?? repoUrl.split('/').pop()!;
 
-      console.log(`Cloning ${repoUrl} to ${output}`);
+        console.log(`Cloning ${repoUrl} to ${output}`);
 
-      execSync(`git clone -n --depth=1 --filter=tree:0 ${repoUrl} ${output}`);
-      execSync(`cd ${path.join(output, argv.basePath ?? '')}`);
-      execSync(`git sparse-checkout set --no-cone ${folders.join(' ')}`);
-      execSync(`git checkout`);
-      if (argv.removeGit) execSync(`rm -rf ${path.join(output, '.git')}`);
+        execSync(`git clone -n --depth=1 --filter=tree:0 ${repoUrl} ${output}`);
+        process.chdir(path.join(output, argv.basePath ?? ''));
+        execSync(`git sparse-checkout set --no-cone ${folders.join(' ')}`);
+        execSync(`git checkout`);
+        if (argv.removeGit) execSync(`rm -rf .git`);
 
-      console.log(`Cloned ${repoUrl} to ${output}`);
+        console.log(`Cloned ${repoUrl} to ${output}`);
+      } catch (e) {
+        console.error('Error: ' + e);
+      }
     }
   )
   .help().argv;
-
-// git clone -n --depth=1 --filter=tree:0 \
-// https://github.com/cirosantilli/test-git-partial-clone-big-small-no-bigtree
-// cd test-git-partial-clone-big-small-no-bigtree
-// git sparse-checkout set --no-cone small
-// git checkout
