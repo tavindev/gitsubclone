@@ -29,5 +29,5 @@ gitsubclone <options> [repo] [subdirectories...]
 | --help | -h | Show help |
 | --keep-git | -k | Keep .git folder from cloned subdirectories |
 | --base-path | -b | Base path to clone subdirectories from |
-| --output-path | -o | Output path to clone subdirectories to |
+| --output-path | -o | Output path to clone subdirectories to. Defaults to the name of the cloned repository |
 
